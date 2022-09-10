@@ -5,6 +5,7 @@ import React from "react";
 import Lights from "../components/Lights";
 import Ground from "../components/Ground";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
+import {TreeModel} from "../components/Tree";
 
 const Tree = () => {
     const model = useLoader(GLTFLoader, "./models/tree.glb");
@@ -49,6 +50,7 @@ const Home: NextPage = () => {
                 <OrbitControls/>
                 <TexturedShapes/>
                 <Tree/>
+                <TreeModel position={[2, 0, 0]}/>
                 <Lights/>
                 <Ground/>
             </Canvas>
