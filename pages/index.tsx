@@ -1,9 +1,22 @@
 import type {NextPage} from 'next'
-import {Canvas} from "@react-three/fiber";
+import {Canvas, useLoader} from "@react-three/fiber";
 import {OrbitControls, Stats, useTexture} from "@react-three/drei";
 import React from "react";
 import Lights from "../components/Lights";
 import Ground from "../components/Ground";
+import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
+
+const Tree = () => {
+    const model = useLoader(GLTFLoader, "./models/tree.glb");
+
+    model.scene.traverse((object) => {
+        if (object.isMesh) {
+            object.castShadow = true;
+        }
+    })
+
+    return <primitive object={model.scene}/>
+}
 
 const TexturedShapes = () => {
     const map = useTexture("./textures/metal_plate_diff_1k.png")
@@ -35,6 +48,7 @@ const Home: NextPage = () => {
                 {testing ? <gridHelper args={[10, 10]}/> : null}
                 <OrbitControls/>
                 <TexturedShapes/>
+                <Tree/>
                 <Lights/>
                 <Ground/>
             </Canvas>
