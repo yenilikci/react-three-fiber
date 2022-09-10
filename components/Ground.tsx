@@ -1,6 +1,4 @@
 import React, {useRef} from "react";
-import {useHelper} from "@react-three/drei";
-import {DirectionalLightHelper} from "three";
 
 const Ground: React.FC = () => {
 
